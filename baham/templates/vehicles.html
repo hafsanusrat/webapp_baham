@@ -1,0 +1,41 @@
+{% include 'header.html' %}
+
+<main role="main">
+    <div class="container col-auto">
+        <span class="text-center"><h2>Vehicle seeking your companionship</h2></span>
+        <table id="dataTable" class="table table-striped display table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Model Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Capacity</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in vehicles %}
+                <tr>
+                    <td>{{i.Model_id}}</td>
+                    <td>{{i.vendor}}</td>
+                    <td>{{i.model}}</td>
+                    <td>{{i.type}}</td>
+                    <td>{{i.capacity}}</td>
+                    <td>
+                        <button class="btn btn-warning">EDIT</button>
+                        <a href="{% url 'delveh' myKey=i.Model_id %}"><button class="btn btn-danger">DELETE</button></a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td>No Vehicles Found</td>
+                </tr>
+                {%endfor %}
+            </tbody>
+        </table>
+        
+        <hr>
+        <a href="{% url 'addvehicle' %}"><button class="btn btn-success">CREATE NEW</button></a>
+    </div>
+</main>
